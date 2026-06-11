@@ -1,16 +1,18 @@
 import React from 'react'
 import Navbar from './components/Navbar';
 import background from './assets/background.jpg'
+import Welcome from './components/Welcome';
 
 function App (){
   return (
     <main>
        <div 
         className="h-screen w-screen bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${background})` }} // 2. 
+        style={{ backgroundImage: `url(${background})` }} 
       >
           
-          <Navbar></Navbar>
+          <Navbar/>
+          <Welcome/>
       </div>
     </main>
   )
