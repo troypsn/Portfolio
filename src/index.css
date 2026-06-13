@@ -13,7 +13,7 @@
   }
 
   nav{
-    @apply flex w-full items-center bg-white/50 justify-between;
+    @apply flex w-full items-center bg-white/50 justify-between relative z-20;
   }
 
   #welcome {

@@ -4,8 +4,9 @@ import { useGSAP } from "@gsap/react"
 
 const FONT_WEIGHTS = {
   subtitle: {min:100, max: 400, default: 100},
-  title: { min: 400, max: 900, default: 400}
+  title: { min: 400, max: 1200, default: 400}
 }
+
 
 const renderText = (text, className, baseWeight = 400) => {
 
@@ -42,27 +43,47 @@ const setupTextHover = (container, type) => {
       letters.forEach((letter)=>{
         const {left: l, width: w} = letter.getBoundingClientRect();
         const distance = Math.abs(mouseX - (l - left + w / 2));
-        const intensity = Math.exp(-(distance ** 2) / 2000)
+        const intensity = Math.exp(-(distance ** 2) / 20000)
 
         animateLetter(letter, min + (max - min) * intensity);
       });
     };
+
+    const handleMouseLeave = (e) =>{
+    letters.forEach((letter)=>{
+      animateLetter(letter, base, 0.3);
+    }) 
+  }
+
     container.addEventListener("mousemove", handleMouseMove);
+    container.addEventListener("mouseleave", handleMouseLeave);
+    return() =>{
+      container.removeEventListener("mousemove", handleMouseMove)
+      container.removeEventListener("mouseleave", handleMouseLeave)
+    }
 };
+
+  
+
 
 function Welcome() {
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
   
   useGSAP(()=>{
-    setupTextHover(titleRef.current, 'title')
-    setupTextHover(subtitleRef.current, 'subtitle')
+    const titleCleanup = setupTextHover(titleRef.current, 'title')
+    const subtitleCleanup = setupTextHover(subtitleRef.current, 'subtitle')
+
+    return () =>{
+      titleCleanup();
+      subtitleCleanup();
+    }
   },[])
 
   return (
-    <section id="welcome">
+    <section id="welcome" >
       <p ref={subtitleRef}>
-        {renderText("Hey, I'm Troy! Welcome to my Portfolio", 'text-3xl text-white font-georama', 100)}
+        {renderText("Welcome to my", 'text-3xl text-white font-georama', 100)}
       </p>
       <h1 ref={titleRef} className="mt-7 ">
         {renderText("portfolio", "text-9xl text-white font-georama italic", 400)}
