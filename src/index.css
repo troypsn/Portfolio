@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,100..900;1,100..900&family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans-flex: "Google Sans Flex", sans-serif;
+  --font-georama: "Georama", sans-serif;
 }
 
 
@@ -12,6 +13,10 @@
   }
 
   nav{
-    @apply flex flex-row bg-white/50 justify-evenly gap-100;
+    @apply flex w-full items-center bg-white/50 justify-between relative z-20;
+  }
+
+  #welcome {
+    @apply fixed inset-0 flex min-h-screen flex-col items-center justify-center text-white;
   }
 }
