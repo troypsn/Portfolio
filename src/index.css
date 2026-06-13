@@ -19,4 +19,33 @@
   #welcome {
     @apply fixed inset-0 flex min-h-screen flex-col items-center justify-center text-white;
   }
+
+  #dock{
+    @apply absolute bottom-5 left-1/2 -translate-x-1/2 z-50 select-none max-sm:hidden;
+
+    .dock-container{
+      @apply bg-white/20 backdrop-blur-md justify-between rounded-2xl p-2 flex items-end gap-1.5 flex-row;
+    }
+
+    .tooltip{
+      @apply !py-1 !px-3 !w-fit !text-center !text-xs !rounded-md !bg-blue-200 !text-blue-900 !shadow-2xl;
+    }
+
+    .dock-icon{
+      @apply size-14 cursor-pointer transition-transform duration-300 ease-out;
+    }
+
+    .dock-icon:hover{
+      @apply scale-125 -translate-y-2;
+    }
+
+  
+
+      img{
+        @apply object-cover object-center;
+      }
+    
+  }
+
+
 }
